@@ -1,14 +1,40 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Clients</h1>
+<h1>Clientes</h1>
 
-<div id="clients">
-  <% @clients.each do |client| %>
-    <%= render client %>
-    <p>
-      <%= link_to "Show this client", client %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New client", new_client_path %>
+<%= link_to "Nuevo cliente", new_client_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <%= render client %>
+        <td>
+          <div class="btn-group" role="group">
+            <%= link_to new_call_path(client.id) do %>
+              <i class="fa fa-phone"></i>
+            <% end %>
+            <%= link_to call_path(client.id) do %>
+              <i class="fa fa-phone"></i>
+            <% end %>
+            <%= link_to "Editar", edit_client_path(client), class: "btn btn-warning" %>  
+            <%= button_to "Eliminar", client, method: :delete, class: "btn btn-danger" %> 
+    <% end %>
+  </div>
+</td>
+    </tr>
+
+    
+    
+  </tbody>
+</table>
